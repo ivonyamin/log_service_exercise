@@ -9,14 +9,15 @@ import datetime
 def create_report():
     report_date = datetime.datetime.now()
     report_logs_start_date = report_date - datetime.timedelta(hours=1)
-    sources_list = Log.objects.values('source').distinct()
+    sources_list = Log.objects.values_list('source', flat=True).distinct()
     for source in sources_list:
         for level in Log.LOG_LEVELS:
             log_report = LogReport()
             log_report.date = report_date
-            log_report.source = source
+            log_report.source = str(source)
             log_report.key = LogReport.LOG_LEVEL
-            log_report.value = level[1]
-            log_report.count = Log.objects.filter(date__range=(report_logs_start_date, report_date), source=source,
-                                                  log_level=level[0]).count()
+            log_report.value = str(level[1])
+            log_report.count = Log.objects.all().filter(date__range=(report_logs_start_date, report_date),
+                                                        source=source,
+                                                        log_level=level[0]).count()
             log_report.save()
