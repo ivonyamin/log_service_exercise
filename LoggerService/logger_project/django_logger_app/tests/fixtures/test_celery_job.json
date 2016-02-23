@@ -1,0 +1,53 @@
+[
+  {
+    "model": "django_logger_app.log",
+    "fields": {
+      "date": "2016-02-14T15:43:58.569Z",
+      "source": "ivon",
+      "log_level": 1,
+      "message": "log debug"
+    }
+  },
+  {
+    "model": "django_logger_app.log",
+    "fields": {
+      "date": "2016-02-15T09:28:16.744Z",
+      "source": "ivon",
+      "log_level": 1,
+      "message": "log info2"
+    }
+  },
+  {
+    "model": "django_logger_app.log",
+    "fields": {
+      "date": "2016-02-14T15:28:12.640Z",
+      "source": "ivon",
+      "log_level": 4,
+      "message": "log error"
+    }
+  },
+  {
+    "model": "django_logger_app.log",
+    "fields": {
+      "source": "ivon",
+      "log_level": 2,
+      "message": "log info2"
+    }
+  },
+  {
+    "model": "django_logger_app.log",
+    "fields": {
+      "source": "ivon",
+      "log_level": 1,
+      "message": "debug info"
+    }
+  },
+  {
+    "model": "django_logger_app.log",
+    "fields": {
+      "source": "ivon",
+      "log_level": 2,
+      "message": "log info"
+    }
+  }
+]
