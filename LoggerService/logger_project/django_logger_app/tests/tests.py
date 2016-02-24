@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 # Create your tests here.
-from django_logger_app.models import LogReport, Log
+from django_logger_app.models import Log
 
 
 class LogTestCase(TestCase):
@@ -16,5 +16,7 @@ class LogTestCase(TestCase):
     def test_get_none_log_level_code(self):
         code = Log.get_log_level_code(None)
         self.assertEqual(code, None)
+
+
 
 
