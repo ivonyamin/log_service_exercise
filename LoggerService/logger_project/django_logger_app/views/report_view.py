@@ -14,6 +14,10 @@ def log_report(request):
     request_log_level = request.GET.get('log_level')
     request_limit = request.GET.get('limit')
 
+    return get_log_report(request_source, request_start_date, request_end_date, request_log_level, request_limit)
+
+
+def get_log_report(request_source, request_start_date, request_end_date, request_log_level, request_limit):
     kwargs = {}
     if request_source:
         kwargs['source'] = str(request_source)

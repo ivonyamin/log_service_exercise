@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django_logger_app.models import Log, LogReport, LogReportSerializer
+from django_logger_app.models import Log, LogReport
 from django_logger_app import celery_jobs
 
 

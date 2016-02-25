@@ -12,7 +12,11 @@ def log(request):
     if request.method == 'GET':
         return log_list(request)
     else:
-        return create_log(request)
+        json_body = json.loads(request.body)
+        log_source = str(json_body.get('source'))
+        log_message = str(json_body.get('message'))
+        log_level = str(json_body.get('log_level'))
+        return create_log(log_level, log_source, log_message)
 
 
 def log_list(request):
@@ -57,11 +61,13 @@ def log_list(request):
     return Response(result.data, status=status.HTTP_200_OK)
 
 
-def create_log(request):
-    json_body = json.loads(request.body)
-    log_source = str(json_body.get('source'))
-    log_message = str(json_body.get('message'))
-    log_level = str(json_body.get('log_level'))
+def create_log(log_source, log_level, log_message):
+
+    if not log_source:
+        return handle_error(status.HTTP_400_BAD_REQUEST, 1, "source can't be null or empty")
+
+    if not log_message:
+        return handle_error(status.HTTP_400_BAD_REQUEST, 1, "message can't be null or empty")
 
     log_obj = Log(source=log_source, log_level=Log.get_log_level_code(log_level), message=log_message)
 
@@ -75,6 +81,7 @@ def create_log(request):
 
 @api_view(['GET'])
 def log_details(request, log_id):
+
     result = LogSerializer(get_object_or_404(Log, id=log_id), many=False)
     return Response(result.data, status=status.HTTP_200_OK)
 
