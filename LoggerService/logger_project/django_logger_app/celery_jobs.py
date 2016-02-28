@@ -1,13 +1,14 @@
 from __future__ import absolute_import
 from celery import shared_task
 
+from django.utils import timezone
 from django_logger_app.models import Log, LogReport
 import datetime
 
 
 @shared_task()
 def create_report():
-    report_date = datetime.datetime.now()
+    report_date = timezone.now()
     report_logs_start_date = report_date - datetime.timedelta(hours=1)
     sources_list = Log.objects.values_list('source', flat=True).distinct()
     for source in sources_list:

@@ -23,14 +23,14 @@ def get_log_report(request_source, request_start_date, request_end_date, request
         kwargs['source'] = str(request_source)
 
     if request_start_date:
-        request_start_date = datetime.datetime.strptime(request_start_date, '%Y-%m-%dT%H:%M:%S.%fZ')
-        if request_start_date < datetime.datetime.now():
+        request_start_date = datetime.datetime.utcfromtimestamp(long(request_start_date))
+        if request_start_date < datetime.now():
             kwargs['date__gte'] = request_start_date
         else:
             return handle_error(status.HTTP_400_BAD_REQUEST, 2, "start_date param cannot be greater then current date")
 
     if request_end_date:
-        request_end_date = datetime.datetime.strptime(request_end_date, '%Y-%m-%dT%H:%M:%S.%fZ')
+        request_end_date = datetime.datetime.utcfromtimestamp(long(request_end_date))
         if request_start_date < request_end_date:
             kwargs['date__lte'] = request_end_date
         else:
@@ -52,7 +52,7 @@ def get_log_report(request_source, request_start_date, request_end_date, request
         return handle_error(status.HTTP_404_NOT_FOUND, status.HTTP_404_NOT_FOUND,
                             "log reports not found")
 
-    result = LogReportSerializer(log_report, many=True)
+    result = LogReportSerializer(log_reports, many=True)
     return Response(result.data, status=status.HTTP_200_OK)
 
 

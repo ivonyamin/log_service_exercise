@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.response import Response
 import json
 import datetime
-
+from django.utils import timezone
 
 @api_view(['GET', 'POST'])
 def log(request):
@@ -23,7 +23,7 @@ def log_list(request):
     request_source = str(request.GET.get('source'))
     request_start_date = request.GET.get('start_date')
     request_end_date = request.GET.get('end_date')
-    request_log_level = request.GET.get('log_level')
+    request_log_level = str(request.GET.get('log_level'))
     request_limit = request.GET.get('limit')
 
     kwargs = {}
@@ -31,14 +31,14 @@ def log_list(request):
          kwargs['source'] = request_source
 
     if request_start_date:
-        request_start_date = datetime.datetime.strptime(request_start_date, '%Y-%m-%dT%H:%M:%S.%fZ')
-        if request_start_date < datetime.datetime.now():
+        request_start_date = datetime.datetime.utcfromtimestamp(long(request_start_date))
+        if request_start_date < timezone.now():
             kwargs['date__gte'] = request_start_date
         else:
             return handle_error(status.HTTP_400_BAD_REQUEST, 2, "start_date param cannot be greater then current date")
 
     if request_end_date:
-        request_end_date = datetime.datetime.strptime(request_end_date, '%Y-%m-%dT%H:%M:%S.%fZ')
+        request_end_date = datetime.datetime.utcfromtimestamp(long(request_end_date))
         if request_start_date < request_end_date:
             kwargs['date__lte'] = request_end_date
         else:
