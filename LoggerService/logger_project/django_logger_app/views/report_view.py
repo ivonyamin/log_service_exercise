@@ -1,5 +1,7 @@
 from datetime import datetime
+import pytz
 
+from django.utils import timezone
 from rest_framework.decorators import api_view
 from django_logger_app.models import LogReport, LogReportSerializer
 from rest_framework import status
@@ -23,15 +25,15 @@ def get_log_report(request_source, request_start_date, request_end_date, request
         kwargs['source'] = str(request_source)
 
     if request_start_date:
-        request_start_date = datetime.datetime.utcfromtimestamp(long(request_start_date))
-        if request_start_date < datetime.now():
+        request_start_date = datetime.fromtimestamp(long(request_start_date), tz=pytz.utc)
+        if request_start_date < timezone.now():
             kwargs['date__gte'] = request_start_date
         else:
             return handle_error(status.HTTP_400_BAD_REQUEST, 2, "start_date param cannot be greater then current date")
 
     if request_end_date:
-        request_end_date = datetime.datetime.utcfromtimestamp(long(request_end_date))
-        if request_start_date < request_end_date:
+        request_end_date = datetime.fromtimestamp(long(request_end_date), tz=pytz.utc)
+        if not request_start_date or request_start_date < request_end_date:
             kwargs['date__lte'] = request_end_date
         else:
             return handle_error(status.HTTP_400_BAD_REQUEST, 3,

@@ -1,0 +1,108 @@
+[
+  {
+    "model": "django_logger_app.logreport",
+    "fields": {
+      "date": "2016-02-17T14:56:43.561Z",
+      "source": "{'source': u'ivon'}",
+      "key": 1,
+      "value": "INFO",
+      "count": 0
+    }
+  },
+  {
+    "model": "django_logger_app.logreport",
+    "fields": {
+      "date": "2016-02-17T14:58:01.938Z",
+      "source": "{'source': u'ivon'}",
+      "key": 1,
+      "value": "DEBUG",
+      "count": 0
+    }
+  },
+  {
+    "model": "django_logger_app.logreport",
+    "fields": {
+      "date": "2016-02-17T14:57:02.345Z",
+      "source": "{'source': u'ivon'}",
+      "key": 1,
+      "value": "INFO",
+      "count": 0
+    }
+  },
+  {
+    "model": "django_logger_app.logreport",
+    "fields": {
+      "date": "2016-02-17T14:55:05.785Z",
+      "source": "{'source': u'ivon'}",
+      "key": 1,
+      "value": "DEBUG",
+      "count": 0
+    }
+  },
+  {
+    "model": "django_logger_app.logreport",
+    "fields": {
+      "date": "2016-02-17T14:58:01.969Z",
+      "source": "{'source': u'ivon'}",
+      "key": 1,
+      "value": "ERROR",
+      "count": 0
+    }
+  },
+  {
+    "model": "django_logger_app.logreport",
+    "fields": {
+      "date": "2016-02-17T14:55:05.817Z",
+      "source": "{'source': u'ivon'}",
+      "key": 1,
+      "value": "ERROR",
+      "count": 0
+    }
+  },
+  {
+    "model": "django_logger_app.logreport",
+    "fields": {
+      "date": "2016-02-17T14:58:01.960Z",
+      "source": "{'source': u'ivon'}",
+      "key": 1,
+      "value": "WARNING",
+      "count": 0
+    }
+  },
+  {
+    "model": "django_logger_app.logreport",
+    "fields": {
+      "source": "{'source': u'ivon'}",
+      "key": 1,
+      "value": "ERROR",
+      "count": 2
+    }
+  },
+  {
+    "model": "django_logger_app.logreport",
+    "fields": {
+      "source": "{'source': u'ivon'}",
+      "key": 1,
+      "value": "WARNING",
+      "count": 3
+    }
+  },
+  {
+    "model": "django_logger_app.logreport",
+    "fields": {
+      "source": "{'source': u'ivon'}",
+      "key": 1,
+      "value": "INFO",
+      "count": 4
+    }
+  },
+  {
+    "model": "django_logger_app.logreport",
+    "fields": {
+      "source": "{'source': u'ivon'}",
+      "key": 1,
+      "value": "DEBUG",
+      "count": 1
+    }
+  }
+]
